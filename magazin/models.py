@@ -19,8 +19,7 @@ class Magazin(models.Model):
 # Модель профиля пользователя
 # ----------------------
 class Profil(models.Model):
-    # Связь с пользователем: один пользователь = один профиль
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profil')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='magazin_profil')
 
     profil_photo = models.ImageField(upload_to='images/', blank=True, null=True)
     name = models.CharField(max_length=30)

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from magazin.forms import MagazinForms, ProfilForms
 from magazin.models import Magazin, Profil
 
@@ -15,7 +16,7 @@ def magazin_create(request):
             return redirect('magazin:magazin_list')
     else:
         form = MagazinForms()
-        return render(request, 'magazin/magazin_create.html', {'form':form})
+    return render(request, 'magazin/magazin_create.html', {'form':form})
 
 def magazin_delete(request, id):
     magazin = get_object_or_404(Magazin, id=id)
@@ -31,7 +32,7 @@ def magazin_update(request, id):
             return redirect('magazin:magazin_list')
     else:
         form = MagazinForms(instance=magazin)
-        return render(request, 'magazin/magazin_create.html', {'form':form})
+    return render(request, 'magazin/magazin_create.html', {'form':form})
 
 
 # Profil qismi
@@ -40,6 +41,7 @@ def profil_list(request):
     profil = Profil.objects.all()
     return render(request, 'magazin/profil_list.html', {'profil':profil})
 
+@login_required(login_url='/users/login/')
 def profil_create(request):
     # if Profil.objects.filter(user=request.user).exists():
     #     return redirect('magazin:profil_list')
@@ -52,7 +54,7 @@ def profil_create(request):
             return redirect('magazin:profil_list')
     else:
         form = ProfilForms()
-        return render(request, 'magazin/profil_create.html', {'form': form})
+    return render(request, 'magazin/profil_create.html', {'form': form})
 
 def profil_delete(request, id):
     profil = get_object_or_404(Profil, id=id)
@@ -68,4 +70,4 @@ def profil_update(request, id):
             return redirect('magazin:profil_list')
     else:
         form = ProfilForms(instance=profil)
-        return render(request, 'magazin/profil_create.html', {'form':form})
+    return render(request, 'magazin/profil_create.html', {'form':form})

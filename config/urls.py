@@ -23,6 +23,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('magazin/', include('magazin.urls')),
+    path('users/', include('users.urls')),
 ]
 
 if settings.DEBUG:

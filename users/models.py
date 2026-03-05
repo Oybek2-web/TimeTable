@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Profil(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profil')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='users_profil')
     profil_photo = models.ImageField(upload_to='images/', blank=True, null=True)
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)

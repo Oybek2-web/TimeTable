@@ -17,7 +17,7 @@ class MagazinForms(forms.ModelForm):
 class ProfilForms(forms.ModelForm):
     class Meta:
         model = Profil
-        fields = '__all__'
+        exclude = ['user']
         widgets = {
             'profil_photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
