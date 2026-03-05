@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Profil yaratish{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="mb-4">Profil yarating</h2>
+
+    <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Rasm</label>
+            {{ form.profil_photo }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ismingiz</label>
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Familiyangiz</label>
+            {{ form.surname }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">O'zingiz haqingizda</label>
+            {{ form.about_you }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Telefon raqam</label>
+            {{ form.phone_number }}
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Saqlash</button>
+            <a class="btn btn-outline-secondary" href="{% url 'magazin:profil_list' %}">
+                Bekor qilish
+            </a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
