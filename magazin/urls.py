@@ -9,6 +9,8 @@ urlpatterns = [
     path('delete/<int:id>/', views.magazin_delete, name='magazin_delete'),
     path('update/<int:id>/', views.magazin_update, name='magazin_update'),
 
+
+
 #   profil oyna
     path('profil/list/', views.profil_list, name='profil_list'),
     path('profil/create/', views.profil_create, name='profil_create'),
