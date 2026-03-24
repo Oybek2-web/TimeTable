@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,7 +122,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+LANGUAGES = [
+    ('en', _('English')),
+    ('uz', _('O\'zbekcha')),
+]
+
+# Tarjima fayllari joylashuvi
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 

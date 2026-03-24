@@ -35,6 +35,8 @@ urlpatterns = [
     path('password-reset/done/',
          auth_views.PasswordResetDoneView.as_view(),
          name='password_reset_done'),
+
+    path('transaction/', include('transaction.urls')),
 ]
 
 if settings.DEBUG:
