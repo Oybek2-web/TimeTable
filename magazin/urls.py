@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from .views import qr_view
+from .views import qr_page_view
 
 app_name = 'magazin'
 
@@ -11,7 +11,7 @@ urlpatterns = [
     path('delete/<int:id>/', views.time_table_delete, name='time_table_delete'),
     path('update/<int:id>/', views.time_table_update, name='time_table_update'),
 
-    path('qr/', qr_view, name='qr'),
+    path('qr/', qr_page_view, name='qr'),
 
 #   profil oyna
 

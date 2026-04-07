@@ -12,6 +12,7 @@ class TimeTableForms(forms.ModelForm):
             'finish': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
             'guruh': forms.TextInput(attrs={'class': 'form-control'}),
             'sana': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'created_at':forms.DateTimeField(),
         }
 
 class ProfilForms(forms.ModelForm):

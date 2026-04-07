@@ -1,3 +1,5 @@
+import base64
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from magazin.forms import TimeTableForms, ProfilForms
@@ -92,32 +94,18 @@ def profil_update(request, id):
     return render(request, 'magazin/profil_create.html', {'form': form})
 
 
-# def qr_view(request):
-#     url = "http://127.0.0.1:8000/schedule/"
-#
-#     qr = qrcode.make(url)
-#
-#     buffer = BytesIO()
-#     qr.save(buffer, format="PNG")
-#
-#     return HttpResponse(buffer.getvalue(), content_type="image/png")
 
-# def qr_view(request):
-#     url = request.build_absolute_uri('/schedule/')
-#
-#     qr = qrcode.make(url)
-#
-#     buffer = BytesIO()
-#     qr.save(buffer, format="PNG")
-#
-#     return HttpResponse(buffer.getvalue(), content_type="image/png")
-
-def qr_view(request):
-    url = "http://127.0.0.1:8000/magazin/list/"
-    qr = qrcode.make(url)
+def qr_page_view(request):
+    full_url = request.build_absolute_uri('/') + "calendar/"
+    qr = qrcode.QRCode(version=1, box_size=10, border=4)
+    qr.add_data(full_url)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="#4f46e5", back_color="white")
     buffer = BytesIO()
-    qr.save(buffer, format="PNG")
-    return HttpResponse(buffer.getvalue(), content_type="image/png")
+    img.save(buffer, format="PNG")
+    qr_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+    return render(request, 'templates/qr_display.html', {'qr_code': qr_base64})
 
 
 
