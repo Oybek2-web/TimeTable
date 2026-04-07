@@ -5,18 +5,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from users.forms import UserRegisterForm
 
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('magazin:magazin_list')
-#     else:
-#         form = UserRegisterForm()
-#     group = Group.objects.get(name='user')
-#     user.groups.add(group)
-#     return render(request, 'users/register.html', {'form': form})
 
 def register(request):
     if request.method == "POST":
@@ -28,7 +16,7 @@ def register(request):
             user.groups.add(group)
 
             login(request, user)
-            return redirect('magazin:magazin_list')
+            return redirect('magazin:time_table_list')
     else:
         form = UserRegisterForm()
 
@@ -44,11 +32,11 @@ def login_user(request):
             next_url = request.GET.get('next') or request.POST.get('next')
             if next_url:
                 return redirect(next_url)
-            return redirect('magazin:magazin_list')
+            return redirect('magazin:time_table_list')
     else:
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
 
 def logout_user(request):
     logout(request)
-    return redirect('magazin:magazin_list')
+    return redirect('magazin:time_table_list')

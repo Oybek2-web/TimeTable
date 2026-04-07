@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Elonlar{% endblock %}
+
+{% block content %}
+
+<h2>O'zgartirish</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Kurs Nomi ></label>
+        {{ form.kurs_nomi }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Auditoriya ></label>
+        {{ form.auditoriya }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Dars Boshlanish Vaqti ></label>
+        {{ form.start }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Dars Tugash Vaqti ></label>
+        {{ form.finish }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Guruh Nomi ></label>
+        {{ form.guruh }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Sana ></label>
+        {{ form.sana }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Yangilash</button>
+    <a class="btn btn-success" href="{% url 'magazin:time_table_list' %}">Bekor qilish</a>
+</form>
+
+{% endblock %}

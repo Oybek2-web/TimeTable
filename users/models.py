@@ -21,7 +21,7 @@ class Card(models.Model):
         db_table = "cards"
 
 
-def generate_code():
+def generate_code1():
     # 100000 dan 999999 gacha random son
     return random.randint(100000, 999999)
 

@@ -9,36 +9,40 @@
 
     <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
         {% csrf_token %}
-        {{form.as_p}}
 
         <div class="mb-3">
-            <label class="form-label">Rasm</label>
-
+            <label class="form-label">Kurs Nomi:</label>
+            {{ form.kurs_nomi }}
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Nomi</label>
-
+            <label class="form-label">Auditoriya:</label>
+            {{ form.auditoriya }}
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Tavsif</label>
-
+            <label class="form-label">Dars Boshlanish Vaqti:</label>
+            {{ form.start }}
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Narxi</label>
-
+            <label class="form-label">Dars Tugash Vaqti:</label>
+            {{ form.finish }}
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Telefon raqam</label>
+            <label class="form-label">Guruh Nomi:</label>
+            {{ form.guruh }}
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label">Sana:</label>
+            {{ form.sana }}
         </div>
 
         <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary">Saqlash</button>
-            <a class="btn btn-outline-secondary" href="{% url 'magazin:magazin_list' %}">
+            <a class="btn btn-outline-secondary" href="{% url 'magazin:time_table_list' %}">
                 Bekor qilish
             </a>
         </div>

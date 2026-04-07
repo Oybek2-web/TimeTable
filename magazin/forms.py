@@ -1,19 +1,18 @@
 from django import forms
-from .models import Magazin, Profil
+from .models import TimeTable, Profil
 
-class MagazinForms(forms.ModelForm):
+class TimeTableForms(forms.ModelForm):
     class Meta:
-        model = Magazin
+        model = TimeTable
         fields = '__all__'
         widgets = {
-            'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'video': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'kurs_nomi': forms.TextInput(attrs={'class': 'form-control'}),
+            'auditoriya': forms.TextInput(attrs={'class': 'form-control'}),
+            'start': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'finish': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'guruh': forms.TextInput(attrs={'class': 'form-control'}),
+            'sana': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         }
-
 
 class ProfilForms(forms.ModelForm):
     class Meta:

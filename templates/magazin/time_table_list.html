@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Dars Jadvali{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Dars Jadvali</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Kurs nomi</th>
+            <th>O‘qituvchi (Ism)</th>
+            <th>Auditoriya</th>
+            <th>Boshlanish Vaqti</th>
+            <th>Tugash Vaqti</th>
+            <th>Guruh Nomi</th>
+            <th>Sana</th>
+            <th>Amallar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ item.kurs_nomi }}</td>
+            <td>{{ item.ism }}</td>
+            <td>{{ item.auditoriya }}</td>
+            <td>{{ item.start|time:"H:i" }}</td>
+            <td>{{ item.finish|time:"H:i" }}</td>
+            <td>{{ item.guruh }}</td>
+            <td>{{ item.sana|date:"d M Y H:i" }}</td>
+            <td>
+                {% if perms.magazin.change_magazin %}
+                <a href="{% url 'magazin:time_table_update' item.id %}"
+                   class="btn btn-sm btn-primary mb-1">
+                    Tahrirlash
+                </a>
+                {% endif %}
+
+                {% if perms.magazin.delete_magazin %}
+                <a href="{% url 'magazin:time_table_delete' item.id %}"
+                   class="btn btn-sm btn-danger">
+                    O‘chirish
+                </a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9" class="text-center">
+                Jadval mavjud emas
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
