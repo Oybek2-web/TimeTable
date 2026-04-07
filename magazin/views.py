@@ -4,6 +4,10 @@ from magazin.forms import TimeTableForms, ProfilForms
 from magazin.models import TimeTable, Profil
 from django.contrib.auth.decorators import permission_required
 
+import qrcode
+from django.http import HttpResponse
+from io import BytesIO
+
 def time_table_list(request):
     list = TimeTable.objects.all()
     return render(request, 'magazin/time_table_list.html', {'list': list})
@@ -88,12 +92,32 @@ def profil_update(request, id):
     return render(request, 'magazin/profil_create.html', {'form': form})
 
 
-# def account_delete(request, pk=None):
-#     if
+# def qr_view(request):
+#     url = "http://127.0.0.1:8000/schedule/"
+#
+#     qr = qrcode.make(url)
+#
+#     buffer = BytesIO()
+#     qr.save(buffer, format="PNG")
+#
+#     return HttpResponse(buffer.getvalue(), content_type="image/png")
 
+# def qr_view(request):
+#     url = request.build_absolute_uri('/schedule/')
+#
+#     qr = qrcode.make(url)
+#
+#     buffer = BytesIO()
+#     qr.save(buffer, format="PNG")
+#
+#     return HttpResponse(buffer.getvalue(), content_type="image/png")
 
-
-
+def qr_view(request):
+    url = "http://127.0.0.1:8000/magazin/list/"
+    qr = qrcode.make(url)
+    buffer = BytesIO()
+    qr.save(buffer, format="PNG")
+    return HttpResponse(buffer.getvalue(), content_type="image/png")
 
 
 
